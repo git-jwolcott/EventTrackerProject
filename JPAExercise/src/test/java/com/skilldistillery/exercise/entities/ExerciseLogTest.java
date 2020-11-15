@@ -44,7 +44,7 @@ class ExerciseLogTest {
 	}
 
 	@Test
-	@DisplayName("testing run entity")
+	@DisplayName("testing ExerciseLog entity")
 	void test() {
 		assertNotNull(log);
 		assertEquals("hiking", log.getType());

@@ -1,10 +1,10 @@
-package com.skilldistillery.run;
+package com.skilldistillery.exercise;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class RunEventsApplicationTests {
+class ExerciseEventsApplicationTests {
 
 	@Test
 	void contextLoads() {
