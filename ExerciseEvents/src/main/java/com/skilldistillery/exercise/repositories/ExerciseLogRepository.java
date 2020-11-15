@@ -7,5 +7,4 @@ import com.skilldistillery.exercise.entities.ExerciseLog;
 public interface ExerciseLogRepository extends JpaRepository<ExerciseLog, Integer> {
 	
 
-
 }

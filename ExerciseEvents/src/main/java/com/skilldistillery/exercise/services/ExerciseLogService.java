@@ -7,6 +7,9 @@ import com.skilldistillery.exercise.entities.ExerciseLog;
 
 
 public interface ExerciseLogService {
-	List<ExerciseLog> getAllEvents();
-
+	List<ExerciseLog> index();
+	ExerciseLog findById(Integer logId);
+	ExerciseLog createExerciseLog(ExerciseLog log);
+	ExerciseLog updateExerciseLog(Integer logId, ExerciseLog log);
+	boolean exerciseLogDeleted(Integer logId);
 }

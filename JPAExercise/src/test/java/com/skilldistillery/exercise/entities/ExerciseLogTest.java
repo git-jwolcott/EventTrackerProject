@@ -14,8 +14,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import com.skilldistillery.exercise.entities.ExerciseLog;
-
 class ExerciseLogTest {
 
 	private static EntityManagerFactory emf;
@@ -49,7 +47,18 @@ class ExerciseLogTest {
 	@DisplayName("testing run entity")
 	void test() {
 		assertNotNull(log);
-		assertEquals("hiking", log);
+		assertEquals("hiking", log.getType());
+		assertEquals(2020, log.getDate().getYear());
+		assertEquals(01, log.getDate().getMonthValue());
+		assertEquals(4, log.getDate().getDayOfMonth());
+		assertEquals(11, log.getStartTime().getHour());
+		assertEquals(16, log.getStartTime().getMinute());
+		assertEquals(13, log.getEndTime().getHour());
+		assertEquals(37, log.getEndTime().getMinute());
+		assertEquals(0, log.getAveragePace().getHour());
+		assertEquals(28, log.getAveragePace().getMinute());
+		assertEquals(21, log.getAveragePace().getSecond());
+		
 	}
 
 }

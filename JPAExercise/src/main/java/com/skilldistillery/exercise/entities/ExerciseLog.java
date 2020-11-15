@@ -1,36 +1,38 @@
 package com.skilldistillery.exercise.entities;
 
-import java.sql.Time;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="exercise_log")
 public class ExerciseLog {
 	//Fields
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String type;
-	private Date date;
+	private LocalDateTime date;
 	
 	@Column(name="start_time")
-	private Time startTime;
+	private LocalDateTime startTime;
 	@Column(name="end_time")
-	private Time endTime;
+	private LocalDateTime endTime;
 	private Double latitude;
 	private Double longitude;
 	@Column(name="calories_burned")
 	private Integer caloriesBurned;
 	private Double distance;
 	@Column(name="average_pace")
-	private Time averagePace;
+	private LocalDateTime averagePace;
 	@Column(name="elevation_gain")
 	private Integer elevationGain;
+	private Integer enabled;
 	
 	//Constructors
 	public ExerciseLog() {
@@ -54,27 +56,27 @@ public class ExerciseLog {
 		this.type = type;
 	}
 
-	public Date getDate() {
+	public LocalDateTime getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(LocalDateTime date) {
 		this.date = date;
 	}
 
-	public Time getStartTime() {
+	public LocalDateTime getStartTime() {
 		return startTime;
 	}
 
-	public void setStartTime(Time startTime) {
+	public void setStartTime(LocalDateTime startTime) {
 		this.startTime = startTime;
 	}
 
-	public Time getEndTime() {
+	public LocalDateTime getEndTime() {
 		return endTime;
 	}
 
-	public void setEndTime(Time endTime) {
+	public void setEndTime(LocalDateTime endTime) {
 		this.endTime = endTime;
 	}
 
@@ -110,11 +112,11 @@ public class ExerciseLog {
 		this.distance = distance;
 	}
 
-	public Time getAveragePace() {
+	public LocalDateTime getAveragePace() {
 		return averagePace;
 	}
 
-	public void setAveragePace(Time averagePace) {
+	public void setAveragePace(LocalDateTime averagePace) {
 		this.averagePace = averagePace;
 	}
 
@@ -126,7 +128,15 @@ public class ExerciseLog {
 		this.elevationGain = elevationGain;
 	}
 
-//Other Methods
+	public Integer getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Integer enabled) {
+		this.enabled = enabled;
+	}
+
+	//Other Methods
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -174,8 +184,10 @@ public class ExerciseLog {
 		builder.append(averagePace);
 		builder.append(", elevationGain=");
 		builder.append(elevationGain);
+		builder.append(", enabled=");
+		builder.append(enabled);
 		builder.append("]");
 		return builder.toString();
 	}
-
+	
 	}
