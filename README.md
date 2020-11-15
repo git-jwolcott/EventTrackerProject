@@ -28,7 +28,7 @@ This is a two phase project.
 
 ### Expected Routes
 Return Type | Route | Functionality
-| :----:  :-----: :-----:
+| :----: | :-----: | :-----:
 |String  | GET api/ping | Returns pong
 |List<ExerciseLog> | GET api/logs | Get all exercise logs
 |ExerciseLog | GET api/logs{logId}| Gets one exercise log by id
