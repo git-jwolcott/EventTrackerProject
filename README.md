@@ -26,7 +26,7 @@ This is a two phase project.
 6. Test these routes using Postman
 7. Deploy your project to your EC2 instance, and link to it from your portfolio web site.
 
-###Expected Routes
+### Expected Routes
 Return Type Route Functionality
 | :----:  :-----: :-----:
 |String   GET api/ping  Returns pong
@@ -36,5 +36,5 @@ Return Type Route Functionality
 |ExerciseLog PUT api/logs/{logId} Replaces an existing exercise log by id
 |void DELETE api/logs/{logId} Sets the existing exercise log to disabled
 
-###EC2 location
+### EC2 location
 http://13.59.82.226:8080/ExerciseEvents/api/ping <only page currently working until phase two is completed
