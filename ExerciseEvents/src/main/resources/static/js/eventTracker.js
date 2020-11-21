@@ -49,48 +49,52 @@ function getLog(logId) {
   }
 
   function displayLog(log) {
-    var dataDiv = document.getElementById('logData');
+    let dataDiv = document.getElementById('logData');
     dataDiv.textContent = '';
     dataDiv.style.color = '';
-    var h1 = document.createElement('h1');
+    let h1 = document.createElement('h1');
     h1.textContent = log.title;
     h1.style.color = "purple";
     dataDiv.appendChild(h1);
-    var ul = document.createElement('ul');
+    let ul = document.createElement('ul');
     ul.class = 'list-group';
-    var typeLi = document.createElement('li');
+    let typeLi = document.createElement('li');
     typeLi.class = 'list-group-item';
     typeLi.textContent = "Exercise Type: " + log.type;
     ul.appendChild(typeLi);
-    var startTimeLi = document.createElement('li');
-    startTimeLi.textContent = "Start Date/Time: " + log.startTime;
+    let startTimeLi = document.createElement('li');
+    let strTime = Date(log.startTime);
+    startTimeLi.innerHTML = strTime.toString();
+    startTimeLi.textContent = "Start Date/Time: " + strTime;
     startTimeLi.class = 'list-group-item';
     ul.appendChild(startTimeLi);
-    var endTimeLi = document.createElement('li');
-    endTimeLi.textContent = "End Date/Time: " + log.endTime;
+    let endTimeLi = document.createElement('li');
+    let eTime = Date(log.endTime);
+    endTimeLi.innerHTML = eTime.toString();
+    endTimeLi.textContent = "End Date/Time: " + eTime;
     endTimeLi.class = 'list-group-item';
     ul.appendChild(endTimeLi);
-    var caloriesBurnedLi = document.createElement('li');
+    let caloriesBurnedLi = document.createElement('li');
     caloriesBurnedLi.textContent = "Calories Burned: " + log.caloriesBurned;
     caloriesBurnedLi.class = 'list-group-item';
     ul.appendChild(caloriesBurnedLi);
-    var distanceLi = document.createElement('li');
+    let distanceLi = document.createElement('li');
     distanceLi.textContent = "Distance: " + log.distance + " miles";
     distanceLi.class = 'list-group-item';
     ul.appendChild(distanceLi);
-    var averagePaceLi = document.createElement('li');
-    averagePaceLi.textContent = "Average Pace: " + log.averagePace;
+    let averagePaceLi = document.createElement('li');
+    averagePaceLi.textContent = "Average Pace: " + Date.parse(log.averagePace);
     averagePaceLi.class = 'list-group-item';
     ul.appendChild(averagePaceLi);
-    var elevationGainLi = document.createElement('li');
+    let elevationGainLi = document.createElement('li');
     elevationGainLi.textContent = "Elevation Gain: " + log.elevationGain;
     elevationGainLi.class = 'list-group-item';
     ul.appendChild(elevationGainLi);
-    var latLi = document.createElement('li');
+    let latLi = document.createElement('li');
     latLi.textContent = "Trailhead Latitude: " + log.latitude;
     latLi.class = 'list-group-item';
     ul.appendChild(latLi);
-    var longLi = document.createElement('li');
+    let longLi = document.createElement('li');
     longLi.textContent = "Trailhead Longitude: " + log.longitude;
     longLi.class = 'list-group-item';
     ul.appendChild(longLi);
@@ -105,7 +109,7 @@ function getLog(logId) {
       if (xhr.readyState === 4) {
         if (xhr.status === 200 || xhr.status === 201) {
           // * On success, if a response was received parse the log data
-          let film = JSON.parse(xhr.responseText);
+          let log = JSON.parse(xhr.responseText);
           displayLog(log);
         } else {
           // * On failure, or if no response text was received, put "Log not created"
