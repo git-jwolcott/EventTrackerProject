@@ -24,15 +24,16 @@ CREATE TABLE IF NOT EXISTS `exercise_log` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(50) NOT NULL,
   `type` VARCHAR(25) NOT NULL,
-  `start_time` DATETIME NULL,
-  `end_time` DATETIME NULL,
+  `start_time` DATETIME NOT NULL,
+  `end_time` DATETIME NOT NULL,
   `latitude` DOUBLE NULL,
   `longitude` DOUBLE NULL,
   `calories_burned` INT NULL,
-  `distance` DECIMAL(5,2) NULL,
-  `average_pace` TIME NULL,
+  `distance` DECIMAL(5,2) NOT NULL,
+  `duration` INT NULL,
   `elevation_gain` INT NULL,
   `enabled` TINYINT(1) NULL DEFAULT 1,
+  `pace` DECIMAL(4,2) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -52,7 +53,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `exercisedb`;
-INSERT INTO `exercise_log` (`id`, `title`, `type`, `start_time`, `end_time`, `latitude`, `longitude`, `calories_burned`, `distance`, `average_pace`, `elevation_gain`, `enabled`) VALUES (1, 'Golden Hiking', 'hiking', '2020-01-04T11:16:45', '2020-01-04T13:37:45', 39.716551, -105.209797, 576, 5.0, '00:28:21', 1106, 1);
+INSERT INTO `exercise_log` (`id`, `title`, `type`, `start_time`, `end_time`, `latitude`, `longitude`, `calories_burned`, `distance`, `duration`, `elevation_gain`, `enabled`, `pace`) VALUES (1, 'Golden Hiking', 'hiking', '2020-01-04T11:16:45', '2020-01-04T13:37:45', 39.716551, -105.209797, 576, 5.0, 8505, 1106, 1, 28.21);
 
 COMMIT;
 

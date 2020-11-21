@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="exercise_log")
@@ -28,8 +29,8 @@ public class ExerciseLog {
 	@Column(name="calories_burned")
 	private Integer caloriesBurned;
 	private Double distance;
-	@Column(name="average_pace")
-	private LocalDateTime averagePace;
+	private Integer duration;
+	private Double pace;
 	@Column(name="elevation_gain")
 	private Integer elevationGain;
 	private Integer enabled;
@@ -38,7 +39,7 @@ public class ExerciseLog {
 	public ExerciseLog() {
 		super();
 	}
-
+	
 	//Get/Set Methods
 	public int getId() {
 		return id;
@@ -112,12 +113,21 @@ public class ExerciseLog {
 		this.distance = distance;
 	}
 
-	public LocalDateTime getAveragePace() {
-		return averagePace;
+
+	public Integer getDuration() {
+		return duration;
 	}
 
-	public void setAveragePace(LocalDateTime averagePace) {
-		this.averagePace = averagePace;
+	public void setDuration(Integer duration) {
+		this.duration = duration;
+	}
+
+	public Double getPace() {
+		return pace;
+	}
+
+	public void setPace(Double pace) {
+		this.pace = pace;
 	}
 
 	public Integer getElevationGain() {
@@ -180,8 +190,10 @@ public class ExerciseLog {
 		builder.append(caloriesBurned);
 		builder.append(", distance=");
 		builder.append(distance);
-		builder.append(", averagePace=");
-		builder.append(averagePace);
+		builder.append(", duration=");
+		builder.append(duration);
+		builder.append(", pace=");
+		builder.append(pace);
 		builder.append(", elevationGain=");
 		builder.append(elevationGain);
 		builder.append(", enabled=");

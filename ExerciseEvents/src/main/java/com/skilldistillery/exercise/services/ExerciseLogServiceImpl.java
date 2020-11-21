@@ -1,5 +1,7 @@
 package com.skilldistillery.exercise.services;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,6 +37,13 @@ public class ExerciseLogServiceImpl implements ExerciseLogService {
 	@Override
 	public ExerciseLog createExerciseLog(ExerciseLog log) {
 		log.setEnabled(1);
+		
+		LocalDateTime startTime = log.getStartTime();
+		LocalDateTime endTime = log.getEndTime();
+		Integer duration = (int) Duration.between(startTime, endTime).toMillis()/1000;
+		Double pace = (double) (duration/log.getDistance()/60);
+		log.setDuration(duration);
+		log.setPace(pace);
 		repo.saveAndFlush(log);
 		return log;
 	}
@@ -45,8 +54,10 @@ public class ExerciseLogServiceImpl implements ExerciseLogService {
 		ExerciseLog log = null;
 		if(logOpt.isPresent()) {
 			log = logOpt.get();
-			if(exerciseLog.getAveragePace() != null) {
-			log.setAveragePace(exerciseLog.getAveragePace());
+	
+			
+			if(exerciseLog.getDuration() != null) {
+			log.setDuration(exerciseLog.getDuration());
 			}
 			if(exerciseLog.getCaloriesBurned() != null) {
 				log.setCaloriesBurned(exerciseLog.getCaloriesBurned());

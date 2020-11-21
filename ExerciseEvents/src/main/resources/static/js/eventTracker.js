@@ -63,14 +63,14 @@ function getLog(logId) {
     typeLi.textContent = "Exercise Type: " + log.type;
     ul.appendChild(typeLi);
     let startTimeLi = document.createElement('li');
-    let strTime = Date(log.startTime);
-    startTimeLi.innerHTML = strTime.toString();
+    let strTime = log.startTime.toString();
+    startTimeLi.innerHTML = strTime;
     startTimeLi.textContent = "Start Date/Time: " + strTime;
     startTimeLi.class = 'list-group-item';
     ul.appendChild(startTimeLi);
     let endTimeLi = document.createElement('li');
-    let eTime = Date(log.endTime);
-    endTimeLi.innerHTML = eTime.toString();
+    let eTime = log.endTime.toString();
+    endTimeLi.innerHTML = eTime;
     endTimeLi.textContent = "End Date/Time: " + eTime;
     endTimeLi.class = 'list-group-item';
     ul.appendChild(endTimeLi);
@@ -83,7 +83,7 @@ function getLog(logId) {
     distanceLi.class = 'list-group-item';
     ul.appendChild(distanceLi);
     let averagePaceLi = document.createElement('li');
-    averagePaceLi.textContent = "Average Pace: " + Date.parse(log.averagePace);
+    averagePaceLi.textContent = "Average Pace: " + log.pace + " minutes/mile";
     averagePaceLi.class = 'list-group-item';
     ul.appendChild(averagePaceLi);
     let elevationGainLi = document.createElement('li');
@@ -128,7 +128,6 @@ function getLog(logId) {
       endTime: document.logListForm.endTime.value,
       caloriesBurned: document.logListForm.caloriesBurned.value,
       distance: document.logListForm.distance.value,
-      averagePace: document.logListForm.averagePace.value,
       elevationGain: document.logListForm.elevationGain.value
     };
     var logObjectJson = JSON.stringify(logObject); //convert JS object to JSON string
