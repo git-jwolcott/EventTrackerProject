@@ -47,6 +47,10 @@ public class ExerciseLogController {
 	@PostMapping("logs")
 	public ExerciseLog createExerciseLog(@RequestBody ExerciseLog log, HttpServletResponse response, HttpServletRequest request) {
 		try {
+			if(log.getTitle() == "") {
+				response.setStatus(400);
+				log = null;
+			}
 			log = logSvc.createExerciseLog(log);
 			if(log == null) {
 				response.setStatus(404);

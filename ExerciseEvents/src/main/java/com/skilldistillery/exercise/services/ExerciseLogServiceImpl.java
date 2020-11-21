@@ -51,9 +51,6 @@ public class ExerciseLogServiceImpl implements ExerciseLogService {
 			if(exerciseLog.getCaloriesBurned() != null) {
 				log.setCaloriesBurned(exerciseLog.getCaloriesBurned());
 			}
-			if(exerciseLog.getDate() != null) {
-			log.setDate(exerciseLog.getDate());
-			}
 			if(exerciseLog.getDistance() != null) {
 			log.setDistance(exerciseLog.getDistance());
 			}

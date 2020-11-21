@@ -48,9 +48,6 @@ class ExerciseLogTest {
 	void test() {
 		assertNotNull(log);
 		assertEquals("hiking", log.getType());
-		assertEquals(2020, log.getDate().getYear());
-		assertEquals(01, log.getDate().getMonthValue());
-		assertEquals(4, log.getDate().getDayOfMonth());
 		assertEquals(11, log.getStartTime().getHour());
 		assertEquals(16, log.getStartTime().getMinute());
 		assertEquals(13, log.getEndTime().getHour());

@@ -22,10 +22,10 @@ DROP TABLE IF EXISTS `exercise_log` ;
 
 CREATE TABLE IF NOT EXISTS `exercise_log` (
   `id` INT NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(50) NOT NULL,
   `type` VARCHAR(25) NOT NULL,
-  `date` DATETIME NULL,
-  `start_time` TIME NULL,
-  `end_time` TIME NULL,
+  `start_time` DATETIME NULL,
+  `end_time` DATETIME NULL,
   `latitude` DOUBLE NULL,
   `longitude` DOUBLE NULL,
   `calories_burned` INT NULL,
@@ -52,7 +52,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `exercisedb`;
-INSERT INTO `exercise_log` (`id`, `type`, `date`, `start_time`, `end_time`, `latitude`, `longitude`, `calories_burned`, `distance`, `average_pace`, `elevation_gain`, `enabled`) VALUES (1, 'hiking', '2020-01-04', '11:16:00', '13:37:45', 39.716551, -105.209797, 576, 5.00, '00:28:21', 1106, 1);
+INSERT INTO `exercise_log` (`id`, `title`, `type`, `start_time`, `end_time`, `latitude`, `longitude`, `calories_burned`, `distance`, `average_pace`, `elevation_gain`, `enabled`) VALUES (1, 'Golden Hiking', 'hiking', '2020-01-04T11:16:45', '2020-01-04T13:37:45', 39.716551, -105.209797, 576, 5.0, '00:28:21', 1106, 1);
 
 COMMIT;
 

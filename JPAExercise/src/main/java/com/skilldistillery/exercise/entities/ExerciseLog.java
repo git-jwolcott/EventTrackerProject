@@ -16,8 +16,8 @@ public class ExerciseLog {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	private String title;
 	private String type;
-	private LocalDateTime date;
 	
 	@Column(name="start_time")
 	private LocalDateTime startTime;
@@ -48,20 +48,20 @@ public class ExerciseLog {
 		this.id = id;
 	}
 
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
 	public String getType() {
 		return type;
 	}
 
 	public void setType(String type) {
 		this.type = type;
-	}
-
-	public LocalDateTime getDate() {
-		return date;
-	}
-
-	public void setDate(LocalDateTime date) {
-		this.date = date;
 	}
 
 	public LocalDateTime getStartTime() {
@@ -164,10 +164,10 @@ public class ExerciseLog {
 		StringBuilder builder = new StringBuilder();
 		builder.append("ExerciseLog [id=");
 		builder.append(id);
+		builder.append(", title=");
+		builder.append(title);
 		builder.append(", type=");
 		builder.append(type);
-		builder.append(", date=");
-		builder.append(date);
 		builder.append(", startTime=");
 		builder.append(startTime);
 		builder.append(", endTime=");
