@@ -11,12 +11,12 @@ function init() {
         getLog(logId);
       }
     });
-      document.logListForm.addLog.addEventListener('click', function(evt) {
-        evt.preventDefault();
-        if (evt.target !== null) {
-          createLog();
-        }
-      });
+    document.logListForm.addLog.addEventListener('click', function(evt) {
+      evt.preventDefault();
+      if (evt.target !== null) {
+        createLog();
+    }
+});
 };
 
 function getLogs() {
@@ -37,7 +37,7 @@ function getLogs() {
         }
     };
     xhr.send();
-}
+};
 function getLog(logId) {
     // TODO:
     // * Use XMLHttpRequest to perform a GET request to "api/logs/"
@@ -62,12 +62,47 @@ function getLog(logId) {
       }
     };
     xhr.send();
-  }
+  };
 
   function displayError(div, msg) {
-    div.textContent = msg;
+      if(typeof(msg) === 'object'){
+          let form = document.getElementById('logListForm');
+          let errorMsg =  div.textContent;
+          errorMsg = '';
+          if(msg.title === '' || msg.title === null){
+           errorMsg += 'Title is required.';
+          }
+          if(msg.startTime === '' || msg.startTime === null ){
+              if(errorMsg === ''){
+                  errorMsg += 'Start Time is required.'
+              }
+              else {
+                  errorMsg += '\n Start Time is required.'
+              }
+          }
+          if(msg.endTime === '' || msg.endTime === null ){
+            if(errorMsg === ''){
+                errorMsg += 'End Time is required.'
+            }
+            else {
+                errorMsg += '\n End Time is required.'
+            }
+        }
+        if(msg.distance === '' || msg.distance === null ){
+            if(errorMsg === ''){
+                    errorMsg += 'Distance is required.'
+                }
+            else {
+                    errorMsg += '\n Distance is required.'
+                }
+            }
+        div.textContent = errorMsg;
+        }
+        else{
+            div.textContent = msg;
+        }
     div.style.color ='red';
-  }
+  };
 
   function displayLogList(logs){
       let iAmHere = document.getElementById('div2');
@@ -76,6 +111,10 @@ function getLog(logId) {
         let tBody = document.getElementById('logTableTBody');
         let tr = document.createElement('tr');
         tr.setAttribute('class','text-center');
+        tr.addEventListener('click', function(e){
+            let log = logs[i];
+            displayLog(log);
+        });
         let td1 = document.createElement('td');
         let td2 = document.createElement('td');
         td1.textContent = i+1;
@@ -115,8 +154,13 @@ function getLog(logId) {
         let tBody = document.createElement('tbody');
         tBody.setAttribute('id', 'logTableTBody');
         for(let i = 0; i < logs.length; i++){
+            if(logs[i].enabled === 1){
             let tr = document.createElement('tr');
             tr.setAttribute('class','text-center');
+            tr.addEventListener('click', function(e){
+                let log = logs[i];
+                displayLog(log);
+            });
             let td1 = document.createElement('td');
             let td2 = document.createElement('td');
             td1.textContent = i+1;
@@ -125,11 +169,10 @@ function getLog(logId) {
             tr.appendChild(td2);
             tBody.appendChild(tr);
         }
+    }
         table.appendChild(tBody);
         div2.appendChild(table);
     }
-        // document.body.appendChild(table);
-        // document.body.insertBefore(table, document.getElementById('div2'));
   };
   function displayLog(log) {
     let dataDiv = document.getElementById('logData');
@@ -181,7 +224,7 @@ function getLog(logId) {
     longLi.class = 'list-group-item';
     ul.appendChild(longLi);
     dataDiv.appendChild(ul);
-  }
+  };
 
   function createLog() {
     let xhr = new XMLHttpRequest();
@@ -194,12 +237,17 @@ function getLog(logId) {
           let log = JSON.parse(xhr.responseText);
           getLogs();
           displayLog(log);
-        } else {
+        } else if(xhr.status === 422){
+            //If status 422, then tell the user which field requires data
+            let log1 = JSON.parse(xhr.responseText);
+            displayError(document.getElementById('logData'), log1);
+        }
+        else {
           // * On failure, or if no response text was received, put "Log not created"
           //   in the logData div.
-          if (xhr.status >= 400 || xhr.responseText === '') {
+          if (xhr.status === 400 || xhr.responseText === '') {
               if(xhr.status)
-            displayError(document.getElementById('logData'), "Log not created. Invalid data.");
+            displayError(document.getElementById('logData'), 'Log not created. Invalid data.');
           }
         }
       }
@@ -217,6 +265,6 @@ function getLog(logId) {
     //check values
     var logObjectJson = JSON.stringify(logObject); //convert JS object to JSON string
     xhr.send(logObjectJson);
-  }
+  };
 
 //xhr.open(`DELETE', /api/events/${eventId}`);

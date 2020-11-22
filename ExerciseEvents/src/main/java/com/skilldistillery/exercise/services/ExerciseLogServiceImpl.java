@@ -44,6 +44,18 @@ public class ExerciseLogServiceImpl implements ExerciseLogService {
 		Double pace = (double) Math.round((duration/log.getDistance()/60)*100)/100;
 		log.setDuration(duration);
 		log.setPace(pace);
+		if(log.getCaloriesBurned() == null) {
+			log.setCaloriesBurned(0);
+		}
+		if(log.getElevationGain() == null) {
+			log.setElevationGain(0);
+		}
+		if(log.getLatitude() == null) {
+			log.setLatitude(0.0);
+		}
+		if(log.getLongitude() == null) {
+			log.setLongitude(0.0);
+		}
 		repo.saveAndFlush(log);
 		return log;
 	}

@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -47,9 +48,9 @@ public class ExerciseLogController {
 	@PostMapping("logs")
 	public ExerciseLog createExerciseLog(@RequestBody ExerciseLog log, HttpServletResponse response, HttpServletRequest request) {
 		try {
-			if(log.getTitle() == "" || log.getStartTime().toString() == "" || log.getEndTime().toString() == "" || log.getDuration() < 0) {
+			if(log.getTitle() == "" || log.getStartTime() == null || log.getEndTime() == null || log.getDistance() == null) {
 				response.setStatus(422);
-				log = null;
+				return log;
 			}
 			log = logSvc.createExerciseLog(log);
 			if(log == null) {
