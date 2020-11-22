@@ -41,7 +41,7 @@ public class ExerciseLogServiceImpl implements ExerciseLogService {
 		LocalDateTime startTime = log.getStartTime();
 		LocalDateTime endTime = log.getEndTime();
 		Integer duration = (int) Duration.between(startTime, endTime).toMillis()/1000;
-		Double pace = (double) (duration/log.getDistance()/60);
+		Double pace = (double) Math.round((duration/log.getDistance()/60)*100)/100;
 		log.setDuration(duration);
 		log.setPace(pace);
 		repo.saveAndFlush(log);

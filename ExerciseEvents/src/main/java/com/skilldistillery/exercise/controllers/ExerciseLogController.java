@@ -48,7 +48,7 @@ public class ExerciseLogController {
 	public ExerciseLog createExerciseLog(@RequestBody ExerciseLog log, HttpServletResponse response, HttpServletRequest request) {
 		try {
 			if(log.getTitle() == "" || log.getStartTime().toString() == "" || log.getEndTime().toString() == "" || log.getDuration() < 0) {
-				response.setStatus(400);
+				response.setStatus(422);
 				log = null;
 			}
 			log = logSvc.createExerciseLog(log);

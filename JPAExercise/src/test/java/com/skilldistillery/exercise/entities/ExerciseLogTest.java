@@ -52,9 +52,6 @@ class ExerciseLogTest {
 		assertEquals(16, log.getStartTime().getMinute());
 		assertEquals(13, log.getEndTime().getHour());
 		assertEquals(37, log.getEndTime().getMinute());
-		assertEquals(0, log.getAveragePace().getHour());
-		assertEquals(28, log.getAveragePace().getMinute());
-		assertEquals(21, log.getAveragePace().getSecond());
 		
 	}
 
