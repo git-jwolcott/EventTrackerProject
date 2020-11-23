@@ -84,7 +84,7 @@ public class ExerciseLogController {
 	}
 	
 	@DeleteMapping("logs/{logId}")
-	public void delete(@PathVariable Integer logId, HttpServletResponse response) {
+	public ExerciseLog delete(@PathVariable Integer logId, HttpServletResponse response) {
 		try {
 			if(logSvc.exerciseLogDeleted(logId)) {
 				response.setStatus(204);
@@ -94,5 +94,6 @@ public class ExerciseLogController {
 		} catch (Exception e) {
 			response.setStatus(400);
 		}
+		return null;
 	}
 }

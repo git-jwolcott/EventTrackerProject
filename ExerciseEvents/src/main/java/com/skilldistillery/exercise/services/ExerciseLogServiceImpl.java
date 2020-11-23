@@ -67,10 +67,12 @@ public class ExerciseLogServiceImpl implements ExerciseLogService {
 		if(logOpt.isPresent()) {
 			log = logOpt.get();
 	
-			
-			if(exerciseLog.getDuration() != null) {
-			log.setDuration(exerciseLog.getDuration());
-			}
+			LocalDateTime startTime = log.getStartTime();
+			LocalDateTime endTime = log.getEndTime();
+			Integer duration = (int) Duration.between(startTime, endTime).toMillis()/1000;
+			Double pace = (double) Math.round((duration/log.getDistance()/60)*100)/100;
+			log.setDuration(duration);
+			log.setPace(pace);
 			if(exerciseLog.getCaloriesBurned() != null) {
 				log.setCaloriesBurned(exerciseLog.getCaloriesBurned());
 			}
@@ -94,6 +96,9 @@ public class ExerciseLogServiceImpl implements ExerciseLogService {
 			}
 			if(exerciseLog.getType() != null) {
 			log.setType(exerciseLog.getType());
+			}
+			if(exerciseLog.getTitle() != null) {
+				log.setTitle(exerciseLog.getTitle());
 			}
 		}
 		repo.saveAndFlush(log);

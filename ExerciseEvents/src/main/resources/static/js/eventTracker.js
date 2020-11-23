@@ -31,7 +31,7 @@ function getLogs() {
             }
             else {
                 if(xhr.status >= 400 || xhr.responseText === ''){
-                    displayError(document.getElementById('logData'), "List not found.");
+                    displayError(document.getElementById('logData'), 'List not found.');
                 }
             }
         }
@@ -105,25 +105,25 @@ function getLog(logId) {
   };
 
   function displayLogList(logs){
-      let iAmHere = document.getElementById('div2');
-      if(typeof(iAmHere) != 'undefined' && iAmHere !=null){
+    let iAmHere = document.getElementById('dataDiv2');
+    if(typeof(iAmHere !== undefined) && iAmHere !== null){
         let i = logs.length -1;
-        let tBody = document.getElementById('logTableTBody');
-        let tr = document.createElement('tr');
-        tr.setAttribute('class','text-center');
-        tr.addEventListener('click', function(e){
-            let log = logs[i];
-            displayLog(log);
-        });
-        let td1 = document.createElement('td');
-        let td2 = document.createElement('td');
-        td1.textContent = i+1;
-        td2.textContent = logs[i].title;
-        tr.appendChild(td1);
-        tr.appendChild(td2);
-        tBody.appendChild(tr);
-      }
-      else {
+  let tBody = document.getElementById('logTableTBody');
+  let tr = document.createElement('tr');
+      tr.setAttribute('class','text-center');
+      tr.addEventListener('click', function(e){
+          let log = logs[i];
+          displayLog(log);
+          });
+  let td1 = document.createElement('td');
+  let td2 = document.createElement('td');
+      td1.textContent = i+1;
+      td2.textContent = logs[i].title;
+      tr.appendChild(td1);
+      tr.appendChild(td2);
+      tBody.appendChild(tr);
+        }
+        else {
       let div = document.createElement('div');
       div.setAttribute('id', 'div2');
       document.body.appendChild(div);
@@ -172,58 +172,222 @@ function getLog(logId) {
     }
         table.appendChild(tBody);
         div2.appendChild(table);
-    }
   };
+};
   function displayLog(log) {
     let dataDiv = document.getElementById('logData');
     dataDiv.textContent = '';
     dataDiv.style.color = '';
-    let h1 = document.createElement('h1');
-    h1.textContent = log.title;
-    h1.style.color = 'purple';
-    dataDiv.appendChild(h1);
-    let ul = document.createElement('ul');
-    ul.class = 'list-group';
-    let typeLi = document.createElement('li');
-    typeLi.class = 'list-group-item';
-    typeLi.textContent = "Exercise Type: " + log.type;
-    ul.appendChild(typeLi);
-    let startTimeLi = document.createElement('li');
-    let strTime = log.startTime.toString();
-    startTimeLi.innerHTML = strTime;
-    startTimeLi.textContent = "Start Date/Time: " + strTime;
-    startTimeLi.class = 'list-group-item';
-    ul.appendChild(startTimeLi);
-    let endTimeLi = document.createElement('li');
-    let eTime = log.endTime.toString();
-    endTimeLi.textContent = 'End Date/Time: ' + eTime;
-    endTimeLi.class = 'list-group-item';
-    ul.appendChild(endTimeLi);
-    let caloriesBurnedLi = document.createElement('li');
-    caloriesBurnedLi.textContent = 'Calories Burned: ' + log.caloriesBurned;
-    caloriesBurnedLi.class = 'list-group-item';
-    ul.appendChild(caloriesBurnedLi);
-    let distanceLi = document.createElement('li');
-    distanceLi.textContent = 'Distance: ' + log.distance + " miles";
-    distanceLi.class = 'list-group-item';
-    ul.appendChild(distanceLi);
-    let averagePaceLi = document.createElement('li');
-    averagePaceLi.textContent = 'Average Pace: ' + log.pace + " minutes/mile";
-    averagePaceLi.class = 'list-group-item';
-    ul.appendChild(averagePaceLi);
-    let elevationGainLi = document.createElement('li');
-    elevationGainLi.textContent = 'Elevation Gain: ' + log.elevationGain;
-    elevationGainLi.class = 'list-group-item';
-    ul.appendChild(elevationGainLi);
-    let latLi = document.createElement('li');
-    latLi.textContent = 'Trailhead Latitude: ' + log.latitude;
-    latLi.class = 'list-group-item';
-    ul.appendChild(latLi);
-    let longLi = document.createElement('li');
-    longLi.textContent = 'Trailhead Longitude: ' + log.longitude;
-    longLi.class = 'list-group-item';
-    ul.appendChild(longLi);
-    dataDiv.appendChild(ul);
+    let dataDiv2 = document.createElement('div');
+    dataDiv2.id = 'dataDiv2';
+    dataDiv.appendChild(dataDiv2);
+    let displayForm = document.createElement('form');
+    displayForm.id = 'displayForm'
+    let div = document.createElement('div');
+    div.setAttribute('class', 'form-row');
+    let div0 = document.createElement('div');
+    div0.setAttribute('class', 'form-group col-md-6');
+    let titleLabel = document.createElement('label');
+    titleLabel.for = 'title';
+    titleLabel.style.margin = '5px 5px 5px 5px';
+    titleLabel.textContent = 'Title';
+    let title = document.createElement('input');
+    title.type = 'text';
+    title.setAttribute('class', 'form-control');
+    title.id = 'title';
+    title.value = log.title;
+    title.style.margin = '5px 5px 5px 5px';
+    div.appendChild(div0);
+    div0.appendChild(titleLabel);
+    div0.appendChild(title);
+    displayForm.appendChild(div);
+    let div1 = document.createElement('div');
+    div1.setAttribute('class', 'form-row');
+    let div2 = document.createElement('div');
+    div2.setAttribute('class', 'form-group col-md-6');
+    let typeLabel = document.createElement('label');
+    typeLabel.for = 'type';
+    typeLabel.style.margin = '5px 5px 5px 5px';
+    typeLabel.textContent = 'Exercise Type';
+    let type = document.createElement('input');
+    type.type = 'text';
+    type.setAttribute('class','form-control');
+    type.id = 'type';
+    type.value = log.type;
+    type.style.margin = '5px 5px 5px 5px';
+    div1.appendChild(div2);
+    div2.appendChild(typeLabel);
+    div2.appendChild(type);
+    displayForm.appendChild(div1);
+    let div3 = document.createElement('div');
+    div3.setAttribute('class', 'form-row');
+    let div4 = document.createElement('div');
+    div4.setAttribute('class', 'form-group col-md-6');
+    let startTimeLabel = document.createElement('label');
+    startTimeLabel.for = 'startTime';
+    startTimeLabel.style.margin = '5px 5px 5px 5px';
+    startTimeLabel.textContent = 'Start Date/Time';
+    let startTime = document.createElement('input');
+    startTime.type = 'datetime-local';
+    startTime.setAttribute('class','form-control');
+    startTime.id = 'startTime';
+    startTime.step = 1;
+    startTime.style.margin = '5px 5px 5px 5px';
+    startTime.value = log.startTime;
+    div3.appendChild(div4);
+    div4.appendChild(startTimeLabel);
+    div4.appendChild(startTime);
+    displayForm.appendChild(div3);
+    let div5 = document.createElement('div');
+    div5.setAttribute('class', 'form-row');
+    let div6 = document.createElement('div');
+    div6.setAttribute('class', 'form-group col-md-6');
+    let endTimeLabel = document.createElement('label');
+    endTimeLabel.for = 'endTime';
+    endTimeLabel.style.margin = '5px 5px 5px 5px';
+    endTimeLabel.textContent = 'End Date/Time';
+    let endTime = document.createElement('input');
+    endTime.type = 'datetime-local';
+    endTime.setAttribute('class','form-control');
+    endTime.id = 'endTime';
+    endTime.step = 1;
+    endTime.style.margin = '5px 5px 5px 5px';
+    endTime.value = log.endTime;
+    div5.appendChild(div6);
+    div6.appendChild(endTimeLabel);
+    div6.appendChild(endTime);
+    displayForm.appendChild(div5);
+    let div7 = document.createElement('div');
+    div7.setAttribute('class', 'form-row');
+    let div8 = document.createElement('div');
+    div8.setAttribute('class', 'form-group col-md-6');
+    let caloriesBurnedLabel = document.createElement('label');
+    caloriesBurnedLabel.for = 'caloriesBurned';
+    caloriesBurnedLabel.style.margin = '5px 5px 5px 5px';
+    caloriesBurnedLabel.textContent = 'Calories Burned';
+    let caloriesBurned = document.createElement('input');
+    caloriesBurned.type = 'number';
+    caloriesBurned.setAttribute('class','form-control');
+    caloriesBurned.id = 'caloriesBurned';
+    caloriesBurned.style.margin = '5px 5px 5px 5px';
+    caloriesBurned.value = log.caloriesBurned;
+    div7.appendChild(div8);
+    div8.appendChild(caloriesBurnedLabel);
+    div8.appendChild(caloriesBurned);
+    displayForm.appendChild(div7);
+    let div9 = document.createElement('div');
+    div9.setAttribute('class', 'form-row');
+    let div10 = document.createElement('div');
+    div10.setAttribute('class', 'form-group col-md-6');
+    let distanceLabel = document.createElement('label');
+    distanceLabel.for = 'distance';
+    distanceLabel.style.margin = '5px 5px 5px 5px';
+    distanceLabel.textContent = 'Distance';
+    let distance = document.createElement('input');
+    distance.type = 'number';
+    distance.setAttribute('class','form-control');
+    distance.id = 'distance';
+    distance.step = 1;
+    distance.style.margin = '5px 5px 5px 5px';
+    distance.value = log.distance;
+    div9.appendChild(div10);
+    div10.appendChild(distanceLabel);
+    div10.appendChild(distance);
+    displayForm.appendChild(div9);
+    let div11 = document.createElement('div');
+    div11.setAttribute('class', 'form-row');
+    let div12 = document.createElement('div');
+    div12.setAttribute('class', 'form-group col-md-6');
+    let avgPaceLabel = document.createElement('label');
+    avgPaceLabel.for = 'averagePace';
+    avgPaceLabel.style.margin = '5px 5px 5px 5px';
+    avgPaceLabel.textContent = 'Average Pace';
+    let avgPace = document.createElement('label');
+    avgPace.style.margin = '5px 5px 5px 5px';
+    avgPace.textContent = log.pace;
+    div11.appendChild(div12);
+    div12.appendChild(avgPaceLabel);
+    div12.appendChild(avgPace);
+    displayForm.appendChild(div11);
+    let div13 = document.createElement('div');
+    div13.setAttribute('class', 'form-row');
+    let div14 = document.createElement('div');
+    div14.setAttribute('class', 'form-group col-md-6');
+    let elevGainLabel = document.createElement('label');
+    elevGainLabel.for = 'elevGain';
+    elevGainLabel.style.margin = '5px 5px 5px 5px';
+    elevGainLabel.textContent = 'Elevation Gain';
+    let elevGain = document.createElement('input');
+    elevGain.type = 'number';
+    elevGain.step = 1;
+    elevGain.setAttribute('class','form-control');
+    elevGain.id = 'elevGain';
+    elevGain.style.margin = '5px 5px 5px 5px';
+    elevGain.value = log.elevationGain;
+    div13.appendChild(div14);
+    div14.appendChild(elevGainLabel);
+    div14.appendChild(elevGain);
+    displayForm.appendChild(div13);
+    let div15 = document.createElement('div');
+    div15.setAttribute('class', 'form-row');
+    let div16 = document.createElement('div');
+    div16.setAttribute('class', 'form-group col-md-6');
+    let latitudeLabel = document.createElement('label');
+    latitudeLabel.for = 'latitude';
+    latitudeLabel.style.margin = '5px 5px 5px 5px';
+    latitudeLabel.textContent = 'Trailhead Latitude';
+    let latitude = document.createElement('input');
+    latitude.type = 'text';
+    latitude.setAttribute('class','form-control');
+    latitude.id = 'lat';
+    latitude.style.margin = '5px 5px 5px 5px';
+    latitude.value = log.latitude;
+    div15.appendChild(div16);
+    div16.appendChild(latitudeLabel);
+    div16.appendChild(latitude);
+    displayForm.appendChild(div15);
+    let div17 = document.createElement('div');
+    div17.setAttribute('class', 'form-row');
+    let div18 = document.createElement('div');
+    div18.setAttribute('class', 'form-group col-md-6');
+    let longitudeLabel = document.createElement('label');
+    longitudeLabel.for = 'longitude';
+    longitudeLabel.style.margin = '5px 5px 5px 5px';
+    longitudeLabel.textContent = 'Trailhead Longitude';
+    let longitude = document.createElement('input');
+    longitude.type = 'text';
+    longitude.setAttribute('class','form-control');
+    longitude.id = 'longitude';
+    longitude.style.margin = '5px 5px 5px 5px';
+    longitude.value = log.longitude;
+    div17.appendChild(div18);
+    div18.appendChild(longitudeLabel);
+    div18.appendChild(longitude);
+    displayForm.appendChild(div17);
+    let div19 = document.createElement('div');
+    div19.setAttribute('class', 'form-row');
+    let editButton = document.createElement('input');
+    editButton.type = 'submit';
+    editButton.setAttribute('class', 'btn btn-outline-primary my-2 my-sm-0');
+    editButton.name = 'edit';
+    editButton.value = 'Edit';
+    displayForm.appendChild(editButton); 
+    editButton.addEventListener('click', function(e1){
+        e1.preventDefault();
+        updateLog(log.id);
+    });
+    let deleteButton = document.createElement('input');
+    deleteButton.type = 'submit';
+    deleteButton.setAttribute('class', 'btn btn-outline-primary my-2 my-sm-0');
+    deleteButton.name = 'delete';
+    deleteButton.value = 'Delete';
+    displayForm.appendChild(deleteButton);
+    deleteButton.addEventListener('click', function(e){
+        e.preventDefault();
+        deleteLog(log.id);
+    });
+    
+    dataDiv2.appendChild(displayForm);
   };
 
   function createLog() {
@@ -246,7 +410,6 @@ function getLog(logId) {
           // * On failure, or if no response text was received, put "Log not created"
           //   in the logData div.
           if (xhr.status === 400 || xhr.responseText === '') {
-              if(xhr.status)
             displayError(document.getElementById('logData'), 'Log not created. Invalid data.');
           }
         }
@@ -267,4 +430,59 @@ function getLog(logId) {
     xhr.send(logObjectJson);
   };
 
-//xhr.open(`DELETE', /api/events/${eventId}`);
+function updateLog(logId){
+    let xhr = new XMLHttpRequest();
+    xhr.open('PUT', `api/logs/${logId}`);
+    xhr.setRequestHeader('Content-type', 'application/json');
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState === 4){
+            if(xhr.status === 200 || xhr.status === 201){
+                let log = JSON.parse(xhr.responseText);
+                location.reload();
+            }else{
+                if(xhr.status >= 400 || xhr.responseText === ''){
+                    displayError(document.getElementById('logData'), 'Log not updated. Invalid data.');
+                }
+            }
+        }
+    };
+    //create request body for 'PUT'
+    let logDataDiv = document.getElementById('logData');
+    let div2 = logDataDiv.firstChild;
+    let form = div2.firstChild;
+
+    var logUpdateObject = {
+        title: form.title.value,
+        type: form.type.value,
+        startTime: form.startTime.value,
+        endTime: form.endTime.value,
+        caloriesBurned: form.caloriesBurned.value,
+        distance: form.distance.value,
+        elevationGain: form.elevGain.value,
+        latitude: form.lat.value,
+        longitude: form.longitude.value
+      };
+    //   check values
+      var logUpdateObjectJson = JSON.stringify(logUpdateObject); //convert JS object to JSON string
+      xhr.send(logUpdateObjectJson);
+};
+
+//xhr.open(`DELETE', /api/logs/${logId}`);
+function deleteLog(logId){
+    let xhr = new XMLHttpRequest();
+    xhr.open('DELETE', `api/logs/${logId}`);
+
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState === 4){
+            if(xhr.status === 204 || xhr.status === 200){
+               location.reload();
+            }
+            else if(xhr.status >=400 || xhr.responseText === ''){
+                if(xhr.status){
+                    displayError(document.getElementById('logData'), 'Log not deleted.');
+                }
+            }
+        }
+    };
+    xhr.send();
+}
