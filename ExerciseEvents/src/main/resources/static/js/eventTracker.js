@@ -108,13 +108,13 @@ function getLog(logId) {
     let iAmHere = document.getElementById('dataDiv2');
     if(typeof(iAmHere !== undefined) && iAmHere !== null){
         let i = logs.length -1;
-  let tBody = document.getElementById('logTableTBody');
-  let tr = document.createElement('tr');
-      tr.setAttribute('class','text-center');
-      tr.addEventListener('click', function(e){
-          let log = logs[i];
-          displayLog(log);
-          });
+        let tBody = document.getElementById('logTableTBody');
+        let tr = document.createElement('tr');
+            tr.setAttribute('class','text-center');
+            tr.addEventListener('click', function(e){
+                let log = logs[i];
+                displayLog(log);
+            });
   let td1 = document.createElement('td');
   let td2 = document.createElement('td');
       td1.textContent = i+1;
@@ -172,7 +172,22 @@ function getLog(logId) {
     }
         table.appendChild(tBody);
         div2.appendChild(table);
-  };
+    };
+    let h2 = document.createElement('h2');
+    h2.id = 'avgOverallDistance';
+    h2.setAttribute('class', 'text-center');
+    let averageDistance = 0;
+    let count = 0;
+    for(let i = 0; i < logs.length; i++){
+        if(logs[i].enabled == 1){
+        averageDistance += logs[i].distance;
+        count ++;
+        }
+    };
+    h2.textContent = "Average Exercise Distance is " + Math.round(((averageDistance/count) + Number.EPSILON)*100)/100 + ' miles.';
+    h2.style.color = 'purple';
+    document.body.appendChild(h2);
+    document.body.insertBefore(h2, document.getElementById('firstBr'));
 };
   function displayLog(log) {
     let dataDiv = document.getElementById('logData');
