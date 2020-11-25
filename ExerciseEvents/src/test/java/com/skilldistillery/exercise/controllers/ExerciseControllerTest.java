@@ -31,8 +31,6 @@ import com.skilldistillery.exercise.services.ExerciseLogServiceImpl;
 @WebMvcTest
 class ExerciseControllerTest {
 	
-	private final static String URI = "api";
-	
 	@Autowired
 	private MockMvc mockMVC;
 	
@@ -44,14 +42,14 @@ class ExerciseControllerTest {
 	private static ObjectMapper mapper = new ObjectMapper();
 
 	@BeforeEach
-	static void setUp() throws Exception {
+	void setUp() throws Exception {
 		logs = new ArrayList<>();
 		exLog = new ExerciseLog();
 		exLog.setId(2);
 		exLog.setType("biking");
 		logs.add(exLog);
 		
-		Optional<ExerciseLog> logOpt = Optional.of(exLog);
+		Optional.of(exLog);
 	}
 	
 	@AfterEach
@@ -72,9 +70,9 @@ class ExerciseControllerTest {
 	@Test
 	@DisplayName("test get index()")
 	void test1() {
-		Mockito.when(exerciseServiceImpl.index()).thenReturn(logs);
+		Mockito.when(exerciseServiceImpl.getList()).thenReturn(logs);
 		try {
-			mockMVC.perform(get("logs")).andExpect(status().isOk()).andExpect((ResultMatcher) jsonPath("$", Matchers.hasSize(1))).andExpect((ResultMatcher) jsonPath("[0].type", Matchers.equalTo("biking")));
+			mockMVC.perform(get("logs")).andExpect(status().isOk()).andExpect((ResultMatcher) jsonPath("$", Matchers.hasSize(1))).andExpect((ResultMatcher) jsonPath("[0].type", Matchers.equalTo("hiking")));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

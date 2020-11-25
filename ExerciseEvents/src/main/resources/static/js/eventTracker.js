@@ -129,7 +129,7 @@ function getLog(logId) {
       document.body.appendChild(div);
       document.body.insertBefore(div, document.getElementById('firstBr').nextSibling);
       let table = document.createElement('table');
-      table.setAttribute('class', 'table table-striped table-hover');
+      table.setAttribute('class', 'table table-striped table-hover table-sm table-bordered');
       table.setAttribute('id','logTable');
         let head = document.createElement('thead');
         head.setAttribute('class','thead thead-dark');

@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.Ordered;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 
 import com.skilldistillery.exercise.entities.ExerciseLog;
 import com.skilldistillery.exercise.repositories.ExerciseLogRepository;
@@ -17,9 +19,9 @@ public class ExerciseLogServiceImpl implements ExerciseLogService {
 	
 	@Autowired
 	private ExerciseLogRepository repo;
-
+	
 	@Override
-	public List<ExerciseLog> index() {
+	public List<ExerciseLog> getList() {
 		List<ExerciseLog> logs = repo.findAll();
 		return logs;
 	}

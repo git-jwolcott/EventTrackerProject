@@ -32,8 +32,8 @@ public class ExerciseLogController {
 	}
 	
 	@GetMapping("logs")
-	public List<ExerciseLog> index(){
-		return logSvc.index();
+	public List<ExerciseLog> getList(){
+		return logSvc.getList();
 	}
 
 	@GetMapping("logs/{logId}")
