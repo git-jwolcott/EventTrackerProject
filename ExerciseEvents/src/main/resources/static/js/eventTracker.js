@@ -141,14 +141,14 @@ function getLog(logId) {
         let headTr2 = document.createElement('tr');
         let th2 = document.createElement('th');
         th2.setAttribute('class','text-center');
-        th2.textContent = 'Log Id';
+        th2.textContent = 'Exercise Log Title';
         let th3 = document.createElement('th');
         th3.setAttribute('class','text-center');
-        th3.textContent = 'Exercise Log Title';
+        th3.textContent = 'Log Id';
         headTr1.appendChild(th1);
         head.appendChild(headTr1);
-        headTr2.appendChild(th3);
         headTr2.appendChild(th2);
+        headTr2.appendChild(th3);
         head.appendChild(headTr2);
         table.appendChild(head);
         let tBody = document.createElement('tbody');

@@ -1,0 +1,8 @@
+h2 {
+  color: purple;
+}
+#deleteButton:hover{
+  background-color: red;
+  color: white;
+  transition-duration: 0.4s;
+}
