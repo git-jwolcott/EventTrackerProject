@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment.prod';
 import { Logs } from '../models/logs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -8,8 +9,10 @@ import { catchError} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class LogsService {
-  private baseUrl = 'http://localhost:8085/';
-  private url = this.baseUrl + 'api/logs';
+  // private baseUrl = 'http://localhost:8085/';
+  // private url = this.baseUrl + 'api/logs';
+  baseUrl = environment.baseUrl;
+  url = this.baseUrl + 'api/logs';
   datePipe: any;
 
   index(): Observable<Logs[]> {

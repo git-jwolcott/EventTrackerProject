@@ -1,110 +1,13 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-
+<!doctype html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Exercise Event Tracker</title>
-  <!--bootstrap-->
-  <link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
-	crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-	integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
-	integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
-  crossorigin="anonymous"></script>
-<!--Project js-->
-  <script src="js/eventTracker.js" type="text/javascript"></script>
-
-</head>
+  <title>NgExerciseTracker</title>
+  <base href="/ExerciseEvents/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="stylesheet" href="styles.32d843a71366612d22b9.css"></head>
 <body>
-<h1 class="text-center">Welcome to Exercise Log Tracker</h1>
-<br id="firstBr">
-<div class ="container-fluid">
-<h2 id="searchH2">Search for an Exercise Log:</h2>
-  <form class="form-inline" name="searchForm" id="searchForm">
-  <div class="form-row">
-      <input class="form-control" type="number" name="logId" placeholder="Enter a Log ID">
-      <button class="btn btn-outline-primary my-2 my-sm-0" name="lookup">Get Log</button>
-    </div>
-    </form>
-    <br>
-    <h3>Log Details:</h3>
-      <div id="logData"></div>
-    </div>
-    <br>
-    <h2>Log Your Exercise:</h2>
-    <form name="logListForm" id='logListForm'>
-    <div class="form-group row">
-      <label for="inputTitle" class="col-sm-2 col-form-label">Title</label>
-      <div class="col-sm-10">
-      <input class="form-control" type="text" name="title" placeholder="Title" required>
-      </div>
-      </div>
-      <div class="form-group row">
-      <label for="inputType" class="col-sm-2 col-form-label">Type</label>
-      <div class="col-sm-10">
-      <input class="form-control" type="text" name="type" placeholder="Enter type of exercise performed">
-      </div>
-      </div>
-      <div class="form-group row">
-      <label for="inputStartDateTime" class="col-sm-2 col-form-label">Start Date/Time</label>
-      <div class="col-sm-10">
-      <input class="form-control" type="datetime-local" step=1 name="startTime" id="dateTime" placeholder="Select Start Date/Time" required>
-      </div>
-      </div>
-      <div class="form-group row">
-      <label for="inputEndDateTime" class="col-sm-2 col-form-label">End Date/Time</label>
-      <div class="col-sm-10">
-      <input class="form-control" type="datetime-local" step=1 name="endTime" id="dateTime2" placeholder="Select End Date/Time" required>
-      </div>
-      </div>
-      <div class="form-group row">
-      <label for="inputCaloriesBurned" class="col-sm-2 col-form-label">Calories Burned</label>
-      <div class="col-sm-10">
-      <input class="form-control" type="number" min="0" step="1" name="caloriesBurned" placeholder="Calories Burned">
-      </div>
-      </div>
-      <div class="form-group row">
-      <label for="inputDistance" class="col-sm-2 col-form-label">Distance</label>
-      <div class="col-sm-10">
-      <input class="form-control" type="number" step=o.1 name="distance" placeholder="Distance in Miles" required>
-      </div>
-      </div>
-      <div class="form-group row">
-      <label for="inputElevationGain" class="col-sm-2 col-form-label">Elevation Gain</label>
-      <div class="col-sm-10">
-      <input class="form-control" type="text" name="elevationGain" placeholder="Total Elevation Gain">
-      </div>
-      </div>
-      <div class="form-group row">
-      <label for="inputTrailheadLat" class="col-sm-2 col-form-label">Trailhead Latitude</label>
-      <div class="col-sm-10">
-      <input class="form-control" type="text" name="latitude" placeholder="00.000000">
-      </div>
-      </div>
-      <div class="form-group row">
-      <label for="inputTrailheadLong" class="col-sm-2 col-form-label">Trailhead Longitude</label>
-      <div class="col-sm-10">
-      <input class="form-control" type="text" name="longitude" placeholder="-000.0000000">
-      </div>
-      </div>
-      <div class="form-group row">
-      <div class="col-sm-10">
-      <button class="btn btn-outline-primary my-2 my-sm-0" name="addLog">Add Log</button>
-      </div>
-      </div>
-    </form>
-     </div>
-</body>
-
+  <app-root></app-root>
+<script src="runtime.359d5ee4682f20e936e9.js" defer></script><script src="polyfills.f43954ace77eaf1b4591.js" defer></script><script src="main.6c032e326f1623dde653.js" defer></script></body>
 </html>
