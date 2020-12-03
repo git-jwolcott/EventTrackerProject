@@ -83,7 +83,8 @@ Return Type | Route | Functionality
 |void | DELETE api/logs/{logId} | Sets the existing exercise log to disabled
 
 ### EC2 location
-http://13.59.82.226:8080/ExerciseEvents/api/ping
+http://13.59.82.226:8080/ExerciseEvents
   * Phase one the api routes listed in the Expected Routes table above can be manually navigated.
+    * For Example appending the url with /api/ping will return pong: http://13.59.82.226:8080/ExerciseEvents/api/ping
   * Phase two - a JavaScript front end was created and implemented making all Expected Routes functional.
   * Phase three - an Angular front end was created and implemented maintaining Expected Routes functionality.
