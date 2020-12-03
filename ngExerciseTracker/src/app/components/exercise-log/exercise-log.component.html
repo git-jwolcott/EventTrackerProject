@@ -35,8 +35,8 @@
       <label class='list-group-item'>Distance:  {{selected.distance}}</label>
       <label class='list-group-item' name="averaagePace" id="averagePace" value="editlog.pace" >Pace:  {{selected.pace}}</label>
       <label class='list-group-item'>Elevation Gain:  {{selected.elevationGain}}</label>
-      <label class='list-group-item'>Trailhead Latitude: {{selected.latitude}}</label>
-      <label class='list-group-item'>Trailhead Longitude:  {{selected.longitude}}</label>
+      <!-- <label class='list-group-item'>Trailhead Latitude: {{selected.latitude}}</label>
+      <label class='list-group-item'>Trailhead Longitude:  {{selected.longitude}}</label> -->
       <button type='button' class='btn btn-outline-primary' (click)="displayTable()">Close Details</button>
       <button type='button' class='btn btn-outline-primary' (click)="setEditLog()">Edit</button>
   </div>
@@ -54,14 +54,20 @@
       <label class='list-group-item'>Calories Burned:  <input type="number" name="caloriesBurned" id="caloriesBurned"  [(ngModel)]="editLog.caloriesBurned"></label>
       <label class='list-group-item'>Distance:  <input type="number" name="distance" id="distance" step=1  [(ngModel)]="editLog.distance"></label>
       <label class='list-group-item'>Elevation Gain:  <input type="number" name="elevationGain" id="elevationGain" step=1 [(ngModel)]="editLog.elevationGain"></label>
-      <label class='list-group-item'>Trailhead Latitude:  <input type="text" name="latitude" id="latitude" [(ngModel)]="editLog.latitude"></label>
-      <label class='list-group-item'>Trailhead Longitude:  <input type="text" name="longitude" id="longitude" [(ngModel)]="editLog.longitude"></label>
+      <!-- <label class='list-group-item'>Trailhead Latitude:  <input type="text" name="latitude" id="latitude" [(ngModel)]="editLog.latitude"></label>
+      <label class='list-group-item'>Trailhead Longitude:  <input type="text" name="longitude" id="longitude" [(ngModel)]="editLog.longitude"></label> -->
       <button type='button' class='btn btn-outline-primary' (click)="updateLog(editLog)">Save Changes</button>
       <button type='button' class='btn btn-outline-primary' id='deleteButton' (click)="deleteLog(selected.id)">Archive</button>
       <button type='button' class='btn btn-outline-primary' (click)="editLog=null">Cancel</button>
+    </div>
   </div>
   </div>
-</div>
+  <!-- <div *ngIf="selected && !editLog">
+    <iframe width='300' height='170' frameborder='0' scrolling='no' marginheight='0' marginwidth='0'
+		[src]='map | safe'></iframe>
+   <br/>
+    <a [href]='fullMap | safe'>{{selected.title}}</a>
+  </div> -->
 <br>
       <div id="newFormDiv" *ngIf="! selected">
         <h3>Add A Task</h3>
@@ -72,8 +78,8 @@
         <label class='list-group-item'>Calories Burned:  <input type="number" name="caloriesBurned" id="caloriesBurned"  [(ngModel)]="newLog.caloriesBurned"></label>
         <label class='list-group-item'>Distance:  <input type="number" name="distance" id="distance" step=1  [(ngModel)]="newLog.distance"></label>
         <label class='list-group-item'>Elevation Gain:  <input type="number" name="elevationGain" id="elevationGain" step=1 [(ngModel)]="newLog.elevationGain"></label>
-        <label class='list-group-item'>Trailhead Latitude:  <input type="text" name="latitude" id="latitude" [(ngModel)]="newLog.latitude"></label>
-        <label class='list-group-item'>Trailhead Longitude:  <input type="text" name="longitude" id="longitude" [(ngModel)]="newLog.longitude"></label>
+        <!-- <label class='list-group-item'>Trailhead Latitude:  <input type="text" name="latitude" id="latitude" [(ngModel)]="newLog.latitude"></label>
+        <label class='list-group-item'>Trailhead Longitude:  <input type="text" name="longitude" id="longitude" [(ngModel)]="newLog.longitude"></label> -->
           <button (click)="addLog(newLog)">Add An Exercise Log</button>
       </div>
 </div>

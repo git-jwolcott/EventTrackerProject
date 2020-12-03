@@ -1,8 +1,16 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Logs } from 'src/app/models/logs';
 import { LogsService } from 'src/app/services/logs.service';
 
+@Pipe({name: 'safe'})
+export class SafePipe implements PipeTransform{
+  constructor(private sanitizer: DomSanitizer){}
+  transform(url: string){
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+}
 @Component({
   selector: 'app-exercise-log',
   templateUrl: './exercise-log.component.html',
@@ -16,6 +24,9 @@ export class ExerciseLogComponent implements OnInit {
   logs: Logs[] = [];
   selected: Logs = null;
   display = true;
+
+  // map: string = 'https://maps.google.com/maps?q=selected.latitude,selected.longitude&hl=en&z=14&amp;output=embed';
+  // fullMap: string ='http://maps.google.com/?q=selected.latitude,selected.longitude';
 
   constructor(private logService: LogsService) { }
 
